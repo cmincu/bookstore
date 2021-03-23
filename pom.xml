@@ -2,6 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -13,12 +14,19 @@
     <artifactId>bookstore</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>bookstore</name>
-    <description>Demo project for Spring Boot</description>
+
+
+    <modules>
+        <module>server</module>
+        <module>test</module>
+    </modules>
+
 
     <properties>
         <java.version>11</java.version>
         <spring.boot-version>2.4.3</spring.boot-version>
         <lib.mapstruct.version>1.4.2.Final</lib.mapstruct.version>
+        <plugin.docker-maven.version>0.34.1</plugin.docker-maven.version>
     </properties>
 
     <dependencies>
@@ -81,6 +89,11 @@
                         </exclude>
                     </excludes>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>${plugin.docker-maven.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
