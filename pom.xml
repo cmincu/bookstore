@@ -15,18 +15,17 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>bookstore</name>
 
-
     <modules>
         <module>server</module>
         <module>test</module>
     </modules>
 
-
     <properties>
         <java.version>11</java.version>
         <spring.boot-version>2.4.3</spring.boot-version>
         <lib.mapstruct.version>1.4.2.Final</lib.mapstruct.version>
-        <plugin.docker-maven.version>0.34.1</plugin.docker-maven.version>
+        <plugin.docker-maven.version>0.31.0</plugin.docker-maven.version>
+        <plugin.maven-antrun-plugin.version>1.8</plugin.maven-antrun-plugin.version>
     </properties>
 
     <dependencies>
@@ -66,7 +65,7 @@
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
-            <version>1.4.2.Final</version>
+            <version>${lib.mapstruct.version}</version>
         </dependency>
 
         <dependency>
@@ -79,55 +78,9 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
-                </configuration>
-            </plugin>
-            <plugin>
                 <groupId>io.fabric8</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>${plugin.docker-maven.version}</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>11</source>
-                    <target>11</target>
-                    <annotationProcessorPaths>
-                        <path>
-                            <groupId>org.mapstruct</groupId>
-                            <artifactId>mapstruct-processor</artifactId>
-                            <version>${lib.mapstruct.version}</version>
-                        </path>
-                        <path>
-                            <groupId>org.hibernate</groupId>
-                            <artifactId>hibernate-jpamodelgen</artifactId>
-                            <version>${hibernate.version}</version>
-                        </path>
-                    </annotationProcessorPaths>
-                    <compilerArgs>
-                        <compilerArg>
-                            -Amapstruct.defaultComponentModel=spring
-                        </compilerArg>
-                        <compilerArg>
-                            -Amapstruct.unmappedTargetPolicy=ERROR
-                        </compilerArg>
-                        <compilerArg>
-                            -parameters
-                        </compilerArg>
-                        <compilerArg>
-                            -Amapstruct.verbose=true
-                        </compilerArg>
-                    </compilerArgs>
-                </configuration>
             </plugin>
         </plugins>
     </build>

@@ -16,4 +16,92 @@
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <configuration>
+                    <dockerHost>tcp://localhost:2375</dockerHost>
+                    <useColor>true</useColor>
+                    <verbose>true</verbose>
+                    <removeVolumes>true</removeVolumes>
+                    <autoCreateCustomNetworks>true</autoCreateCustomNetworks>
+                    <images>
+                        <image>
+                            <alias>bookstore.server</alias>
+                            <name>com.mincu/bookstore-server:${project.version}</name>
+                            <build>
+                                <from>fabric8/java-alpine-openjdk11-jre:1.8</from>
+                                <maintainer>catalin@cmincu.com</maintainer>
+                                <assembly>
+                                    <mode>dir</mode>
+                                    <basedir>/servers/bookstore</basedir>
+                                    <descriptor>bookstore.xml</descriptor>
+                                </assembly>
+                                <workdir>/servers/bookstore</workdir>
+                                <cmd>
+                                    <exec>
+                                        <arg>java</arg>
+                                        <!-- Use the jacoco instrumentation agent
+                                        <arg>
+                                            -javaagent:jacoco-agent.jar=destfile=./jacoco-report/jacoco-it.exec,includes=com.adswizz.domain.creative.server.approval.*,append=false,dumponexit=true
+                                        </arg>
+                                        -->
+                                        <!-- Expose 8082 port for debug
+                                        <arg>-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8082</arg>
+                                        -->
+                                        <arg>-jar</arg>
+                                        <arg>/servers/bookstore/bookstore.jar</arg>
+                                    </exec>
+                                </cmd>
+
+                                <!-- Expose ports -->
+                                <ports>
+                                    <port>8080</port>
+                                    <!--
+                                    <port>8082</port>
+                                    -->
+                                </ports>
+
+                                <volumes>
+                                    <volume>/servers/bookstore/config</volume>
+                                </volumes>
+                            </build>
+                            <run>
+                                <namingStrategy>alias</namingStrategy>
+                                <network>
+                                    <mode>custom</mode>
+                                    <name>bookstore.it-tests</name>
+                                    <alias>bookstore</alias>
+                                </network>
+                                <ports>
+                                    <port>9080:8080</port>
+                                    <!--
+                                    <port>31082:8082</port>
+                                    -->
+                                </ports>
+                                <log>
+                                    <color>cyan</color>
+                                </log>
+                                <wait>
+                                    <log>Tomcat started on port</log>
+                                    <time>120000</time>
+                                </wait>
+                                <volumes>
+                                    <bind>
+                                        <volume>
+                                            ${basedir}/src/main/docker/config:/servers/bookstore/config
+                                        </volume>
+                                    </bind>
+                                </volumes>
+                            </run>
+                        </image>
+                    </images>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
 </project>
