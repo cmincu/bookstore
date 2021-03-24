@@ -32,7 +32,7 @@
                             <alias>bookstore.server</alias>
                             <name>com.mincu/bookstore-server:${project.version}</name>
                             <build>
-                                <from>fabric8/java-alpine-openjdk11-jre:1.8</from>
+                                <from>balenalib/armv7hf-openjdk</from>
                                 <maintainer>catalin@cmincu.com</maintainer>
                                 <assembly>
                                     <mode>dir</mode>
