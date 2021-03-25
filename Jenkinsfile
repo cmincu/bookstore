@@ -16,7 +16,7 @@ node {
         stage ("Testing") {
             sh 'sleep 10'
             sh '/mnt/backup/Devel/apache-jmeter-5.4.1/bin/jmeter -j jmeter.save.saveservice.output_format=xml -n -t JMeter_Post.jmx -l src/main/resources/JMeter.jtl'
-            archiveArtifacts artifacts: artifacts: 'JMeter.jtl, **/jmeter.log', followSymlinks: false
+            archiveArtifacts artifacts: 'JMeter.jtl, **/jmeter.log', followSymlinks: false
         }
         stage('Stop server'){
             sh "mvn docker:stop"
