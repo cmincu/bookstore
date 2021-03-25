@@ -1,5 +1,4 @@
 node {
-
         stage('Build') {
             steps {
                 // Get some code from a GitHub repository
@@ -22,21 +21,14 @@ node {
                 }
             }
         }
-        stage('Start server'){
-            steps{
-                sh "mvn docker:start"
-            }
+        stage('Start server') {
+            sh "mvn docker:start"
         }
-        stage ("Testing")
-        {
-            steps{
-                sh 'sleep 10'
-            }
+        stage ("Testing") {
+            sh 'sleep 10'
         }
         stage('Stop server'){
-            steps{
-                sh "mvn docker:stop"
-            }
+            sh "mvn docker:stop"
         }
 
 
