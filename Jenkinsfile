@@ -11,6 +11,6 @@ node {
             archiveArtifacts artifacts: 'server/target/*.jar', followSymlinks: false
         }
         stage('Run JMeter tests'){
-            sh 'mvn clean:verify'
+            sh 'mvn clean verify'
         }
 }
