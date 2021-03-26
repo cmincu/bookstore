@@ -10,5 +10,7 @@ node {
         }
         stage('Run JMeter tests'){
             sh 'mvn clean verify'
+
+            archiveArtifacts artifacts: 'test/target/jmeter/results/*', followSymlinks: false
         }
 }
