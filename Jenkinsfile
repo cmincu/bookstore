@@ -13,6 +13,6 @@ node {
 
             archiveArtifacts artifacts: 'test/target/jmeter/results/*', followSymlinks: false
 
-            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'test/target/jmeter/reports/JMeter_Post', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
+            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'test/target/jmeter/reports/JMeter_Post', reportFiles: 'index.html', reportName: 'HTML Report',  reportTitles: 'JMeter POST report'])
         }
 }
