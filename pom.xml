@@ -26,6 +26,7 @@
         <lib.mapstruct.version>1.4.2.Final</lib.mapstruct.version>
         <plugin.docker-maven.version>0.31.0</plugin.docker-maven.version>
         <plugin.maven-antrun-plugin.version>1.8</plugin.maven-antrun-plugin.version>
+        <plugin.jmeter-maven-plugin.version>3.3.0</plugin.jmeter-maven-plugin.version>
     </properties>
 
     <dependencies>
@@ -67,6 +68,11 @@
             <artifactId>mapstruct</artifactId>
             <version>${lib.mapstruct.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.lazerycode.jmeter</groupId>
+            <artifactId>jmeter-maven-plugin</artifactId>
+            <version>${plugin.jmeter-maven-plugin.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -82,7 +88,13 @@
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>${plugin.docker-maven.version}</version>
             </plugin>
+            <plugin>
+                <groupId>com.lazerycode.jmeter</groupId>
+                <artifactId>jmeter-maven-plugin</artifactId>
+                <version>${plugin.jmeter-maven-plugin.version}</version>
+            </plugin>
         </plugins>
+
     </build>
 
 </project>
