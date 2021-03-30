@@ -29,7 +29,7 @@
                     <autoCreateCustomNetworks>true</autoCreateCustomNetworks>
                     <images>
                         <image>
-                            <name>mariadb</name>
+                            <name>459below/mariadb-armv7</name>
                             <alias>bookstore.db</alias>
                             <run>
                                 <namingStrategy>alias</namingStrategy>
@@ -55,7 +55,7 @@
                                 </volumes>
                                 <wait>
                                     <log>MySQL init process done. Ready for start up.</log>
-                                    <time>30000</time>
+                                    <time>60000</time>
                                     <exec>
                                         <postStart>
                                             sh /tmp/import/setup-data.sh
