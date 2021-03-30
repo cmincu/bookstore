@@ -24,6 +24,8 @@
         <java.version>11</java.version>
         <spring.boot-version>2.4.3</spring.boot-version>
         <lib.mapstruct.version>1.4.2.Final</lib.mapstruct.version>
+        <lib.junit.version>4.13.2</lib.junit.version>
+        <lib.mockito.version>3.8.0</lib.mockito.version>
         <plugin.docker-maven.version>0.31.0</plugin.docker-maven.version>
         <plugin.maven-antrun-plugin.version>1.8</plugin.maven-antrun-plugin.version>
         <plugin.jmeter-maven-plugin.version>3.3.0</plugin.jmeter-maven-plugin.version>
@@ -59,6 +61,10 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
@@ -79,6 +85,21 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${lib.junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${lib.mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>

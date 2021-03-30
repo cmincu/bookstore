@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Objects;
 
 @Entity
 @Table(name = "books")
@@ -19,7 +20,7 @@ public class Book {
     @Column
     private String author;
     @Column
-    private String genre;
+    private int genre;
 
     public String getTitle() {
         return title;
@@ -37,11 +38,37 @@ public class Book {
         this.author = author;
     }
 
-    public String getGenre() {
+    public int getGenre() {
         return genre;
     }
 
-    public void setGenre(String genre) {
+    public void setGenre(int genre) {
         this.genre = genre;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        final Book book = (Book) o;
+        return id == book.id
+                && genre == book.genre
+                && Objects.equals(title, book.title)
+                && Objects.equals(author, book.author);
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", genre=" + genre +
+                '}';
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, author, genre);
     }
 }

@@ -29,6 +29,42 @@
                     <autoCreateCustomNetworks>true</autoCreateCustomNetworks>
                     <images>
                         <image>
+                            <name>mariadb</name>
+                            <alias>bookstore.db</alias>
+                            <run>
+                                <namingStrategy>alias</namingStrategy>
+                                <network>
+                                    <mode>custom</mode>
+                                    <name>bookstore.it-tests</name>
+                                    <alias>bookstore.db</alias>
+                                </network>
+                                <env>
+                                    <MYSQL_ROOT_PASSWORD>
+                                        root
+                                    </MYSQL_ROOT_PASSWORD>
+                                </env>
+                                <ports>
+                                    <port>3306:3306</port>
+                                </ports>
+                                <volumes>
+                                    <bind>
+                                        <volume>
+                                            ${project.build.testOutputDirectory}/db-scripts:/tmp/import
+                                        </volume>
+                                    </bind>
+                                </volumes>
+                                <wait>
+                                    <log>MySQL init process done. Ready for start up.</log>
+                                    <time>30000</time>
+                                    <exec>
+                                        <postStart>
+                                            sh /tmp/import/setup-data.sh
+                                        </postStart>
+                                    </exec>
+                                </wait>
+                            </run>
+                        </image>
+                        <image>
                             <alias>bookstore.server</alias>
                             <name>com.mincu/bookstore-server:${project.version}</name>
                             <build>
@@ -75,6 +111,9 @@
                                     <name>bookstore.it-tests</name>
                                     <alias>bookstore</alias>
                                 </network>
+                                <dependsOn>
+                                    <container>bookstore.db</container>
+                                </dependsOn>
                                 <ports>
                                     <port>9080:8080</port>
                                     <!--
