@@ -1,7 +1,7 @@
 Bookstore application
 ======================
 
-Simple SpringBoot application that manage list of books in a library. Data is stored into H2 in memory database.
+Simple SpringBoot application that manage list of books in a library. Data is stored into H2 in memory database by default or MariaDB docker instance.
 
 Assure you have Java 11 and Maven installed.
 
