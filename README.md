@@ -1,7 +1,7 @@
 Bookstore application
 ======================
 
-Simple SpringBoot application that manage list of books in a library. Data is stored into H2 in memory database by default or MariaDB docker instance.
+Simple SpringBoot application that manage a bookstore.
 
 Assure you have Java 11 and Maven installed.
 
@@ -22,7 +22,7 @@ mvn docker:stop
 
 
 ### Running tests
-mvn clean:verify 
+mvn clean:verify
 
 Will run default test plus JMeter tests as defined in module test folder src/test/jmeter.
 
@@ -33,10 +33,10 @@ Solution is described in :
 
 Steps:
 
-* Go to the Jenkins Admin page (login as admin). 
+* Go to the Jenkins Admin page (login as admin).
 * Go to Manage Jenkins -> Script Console
-* Then in the script console copy/paste following it made it work
-  
+* Then in the script console copy/paste run following snippet
+
 Snippet:
 
      System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "sandbox allow-scripts; default-src *; style-src * http://* 'unsafe-inline' 'unsafe-eval'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'");
