@@ -1,6 +1,3 @@
-Bookstore application
-======================
-
 Simple SpringBoot application that manage a bookstore. 
 Instruction on how to build and run application on [`https://github.com/cmincu/bookstore#readme`](https://github.com/cmincu/bookstore#readme)
 
