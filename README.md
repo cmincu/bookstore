@@ -2,6 +2,7 @@ Bookstore application
 ======================
 
 Simple SpringBoot application that manage a bookstore.
+More docs on [`https://cmincu.github.io/bookstore/`](https://cmincu.github.io/bookstore/)
 
 Assure you have Java 11 and Maven installed.
 
