@@ -21,6 +21,9 @@
     </modules>
 
     <properties>
+        <sonar.organization>cmincu</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+             
         <java.version>11</java.version>
         <spring.boot-version>2.4.3</spring.boot-version>
         <lib.mapstruct.version>1.4.2.Final</lib.mapstruct.version>
@@ -30,7 +33,7 @@
         <plugin.maven-antrun-plugin.version>1.8</plugin.maven-antrun-plugin.version>
         <plugin.jmeter-maven-plugin.version>3.3.0</plugin.jmeter-maven-plugin.version>
     </properties>
-
+         
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
